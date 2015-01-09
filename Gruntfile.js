@@ -10,8 +10,30 @@ module.exports = function(grunt) {
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
 		
+		postcss: {
+			options: {
+				map: true,
+				processors: [
+					require('autoprefixer-core')({browsers: ['> 1%', 'last 2 versions', 'Firefox ESR', 'Opera 12.1']}).postcss
+				]
+			},
+			dist: {
+				src: 'assets/css/*.css'
+			}
+		},
+
+		cssmin: {
+			combine: {
+				files: {
+					'assets/css/dist/prettyPhoto.min.css': [
+						'assets/css/prettyPhoto.css'
+					]
+				}
+			}
+		},
+		
 		jshint: {
-			files: ['Gruntfile.js', 'js/jquery.prettyPhoto.js'],
+			files: ['Gruntfile.js', 'assets/js/jquery.prettyPhoto.js'],
 			options: {
 				curly:				true,
 				eqeqeq:				true,
@@ -55,20 +77,28 @@ module.exports = function(grunt) {
 		concat: {
 			js: {
 				src: [
-					'js/jquery.prettyPhoto.js'
+					'assets/js/jquery.prettyPhoto.js'
 				],
-				dest: 'js/dist/jquery.prettyPhoto.concat.js'
+				dest: 'assets/js/dist/jquery.prettyPhoto.concat.js'
 			}
         },
 
 		uglify: {
 			build: {
-				src: 'js/dist/jquery.prettyPhoto.concat.js',
-				dest: 'js/dist/jquery.prettyPhoto.min.js'
+				src: 'assets/js/dist/jquery.prettyPhoto.concat.js',
+				dest: 'assets/js/dist/jquery.prettyPhoto.min.js'
 			}
 		},
 		
 		watch: {
+			css: {
+				files: ['assets/css/*.css'],
+				tasks: ['postcss', 'cssmin'],
+				options: {
+					spawn: false
+				}
+			},
+
 			scripts: {
 				files: ['js/*.js'],
 				tasks: ['jshint', 'concat', 'uglify'],
@@ -84,6 +114,6 @@ module.exports = function(grunt) {
 	require('load-grunt-tasks')(grunt);
 
 	// 4. Where we tell Grunt what to do when we type "grunt" into the terminal.
-	grunt.registerTask('default', ['newer:jshint', 'newer:concat', 'newer:uglify', 'watch']);
+	grunt.registerTask('default', ['newer:postcss', 'newer:cssmin', 'newer:jshint', 'newer:concat', 'newer:uglify', 'watch']);
 
 };
