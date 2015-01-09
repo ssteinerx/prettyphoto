@@ -249,7 +249,11 @@
 			// Fade the holder
 			$pp_pic_holder.fadeIn(function(){
 				// Set the title
-				var tmp = (settings.show_title && pp_titles[set_position] !== "" && typeof pp_titles[set_position] !== "undefined") ? $ppt.html(unescape(pp_titles[set_position])) : $ppt.html('&nbsp;');
+				if (settings.show_title && pp_titles[set_position] !== "" && typeof pp_titles[set_position] !== "undefined") {
+					$ppt.html(unescape(pp_titles[set_position]));
+				} else {
+					$ppt.html('&nbsp;');
+				}
 				
 				imgPreloader = "";
 				skipInjection = false;
@@ -609,7 +613,12 @@
 		* @param setCount {integer} The total number of items in the set
 		*/
 		function _checkPosition(setCount){
-			var tmp = (setCount > 1) ? $('.pp_nav').show() : $('.pp_nav').hide(); // Hide the bottom nav if it's not a set.
+			// Hide the bottom nav if it's not a set.
+			if (setCount > 1) {
+				$('.pp_nav').show();
+			} else {
+				$('.pp_nav').hide();
+			}
 		}
 	
 		/**
