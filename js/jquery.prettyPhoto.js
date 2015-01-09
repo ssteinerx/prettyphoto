@@ -4,7 +4,7 @@
 	Author: Stephane Caron (http://www.no-margin-for-errors.com)
 	Version: 3.1.5
 ------------------------------------------------------------------------- */
-(function($) {
+;(function($) {
 	$.prettyPhoto = {version: '3.1.5'};
 	
 	$.fn.prettyPhoto = function(pp_settings) {
@@ -31,7 +31,7 @@
 			overlay_gallery: true, /* If set to true, a gallery will overlay the fullscreen image on mouse over */
 			overlay_gallery_max: 30, /* Maximum number of pictures in the overlay gallery */
 			keyboard_shortcuts: true, /* Set to false if you open forms inside prettyPhoto */
-			changepicturecallback: function(){}, /* Called everytime an item is shown/changed */
+			changepicturecallback: function(url){}, /* Called everytime an item is shown/changed, added current / clicked href attribute as parameter to callback function */
 			callback: function(){}, /* Called when prettyPhoto is closed */
 			ie6_fallback: true,
 			markup: '<div class="pp_pic_holder"> \
@@ -529,7 +529,10 @@
 				
 				if(settings.autoplay_slideshow && !pp_slideshow && !pp_open) $.prettyPhoto.startSlideshow();
 				
-				settings.changepicturecallback(); // Callback!
+				/**
+				 * Added current / clicked href attribute as parameter to callback function
+				 */
+				settings.changepicturecallback(pp_images[set_position]); // Callback!
 				
 				pp_open = true;
 			});
