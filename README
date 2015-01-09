@@ -1,7 +1,11 @@
-prettyPhoto v3.1.7
+prettyPhoto v3.1.5
 © Copyright, Stephane Caron
 http://www.no-margin-for-errors.com
 
+prettyPhoto v3.1.7
+Forked to:
+ - Send clicked href value back to callback function
+ - Use grunt / jshint to improve javascript quality
 
 ============================= Released under =============================
 
