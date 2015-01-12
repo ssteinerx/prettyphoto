@@ -3,6 +3,7 @@ Fork of v3.1.5 to:
  - Send clicked / changed href value back to `changepicturecallback()` callback function
  - Use grunt / jshint to improve javascript quality
  - Re-organize files to `/assets/` folder
+ - Switched to SASS for css file (future use)
 
 Fork of:
 prettyPhoto v3.1.5
