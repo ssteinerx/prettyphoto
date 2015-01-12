@@ -1,11 +1,13 @@
+prettyPhoto v3.1.7
+Fork of v3.1.5 to:
+ - Send clicked / changed href value back to `changepicturecallback()` callback function
+ - Use grunt / jshint to improve javascript quality
+ - Re-organize files to `/assets/` folder
+
+Fork of:
 prettyPhoto v3.1.5
 © Copyright, Stephane Caron
 http://www.no-margin-for-errors.com
-
-prettyPhoto v3.1.7
-Forked to:
- - Send clicked / changed href value back to `changepicturecallback()` callback function
- - Use grunt / jshint to improve javascript quality
 
 ============================= Released under =============================
 
