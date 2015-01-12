@@ -100,7 +100,7 @@ module.exports = function(grunt) {
 			},
 
 			scripts: {
-				files: ['js/*.js'],
+				files: ['assets/js/*.js'],
 				tasks: ['jshint', 'concat', 'uglify'],
 				options: {
 					spawn: false
